@@ -1,0 +1,5 @@
+- hosts: 
+    - test-task
+    - test
+  roles:
+    - openvpn-client

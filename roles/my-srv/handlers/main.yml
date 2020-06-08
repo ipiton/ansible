@@ -1,0 +1,7 @@
+- name: fix permissions
+  file:
+    path: '/home/vit/'
+    owner: 'vit'
+    group: 'vit'
+    state: directory
+    recurse: yes

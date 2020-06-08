@@ -1,0 +1,53 @@
+---
+   - name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+     become: yes
+     apt:
+       update_cache: yes
+       cache_valid_time: 3600
+
+   - name: Update all packages to the latest version
+     become: yes
+     apt:
+       upgrade: dist
+
+   - name: Install soft
+     become: yes
+     apt:
+       name:
+        - mc
+        - wget
+        - nano
+        - curl
+        - mtr
+        - snmp
+        - speedtest-cli
+        - dnsutils
+        - jq
+        - zsh
+        - git
+        - sudo
+        - tree
+        - tmux
+        - lsof
+        - htop
+        - iotop
+        - iftop
+        - iperf
+        - ngrep
+        - tcpdump
+        - sipgrep
+        - sngrep
+        - whois
+
+   - name: Copy .zshrc
+     copy:
+       src: zshrc
+       dest: '/home/vit/.zshrc' 
+     notify: 
+       - fix permissions
+    
+   - name: Set shell zsh
+     become: yes
+     user:
+       name: vit
+       shell: /bin/zsh

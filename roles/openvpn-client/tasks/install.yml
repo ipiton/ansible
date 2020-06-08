@@ -1,0 +1,13 @@
+---
+
+- name: Install OpenVPN
+  become: yes
+  apt:
+    name: openvpn
+
+- name: Enable service OpenVPN
+  systemd:
+    name: openvpn
+    enabled: yes
+    masked: no
+  become: yes
