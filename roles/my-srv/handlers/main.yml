@@ -1,7 +1,7 @@
 - name: fix permissions
   file:
-    path: '/home/vit/'
-    owner: 'vit'
-    group: 'vit'
+    path: '/home/{{ user_name }}/'
+    owner: '{{ user_name }}'
+    group: '{{ user_name }}'
     state: directory
     recurse: yes

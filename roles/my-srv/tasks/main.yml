@@ -42,12 +42,12 @@
    - name: Copy .zshrc
      copy:
        src: zshrc
-       dest: '/home/vit/.zshrc' 
+       dest: "/home/{{ user_name }}/.zshrc"
      notify: 
        - fix permissions
     
    - name: Set shell zsh
      become: yes
      user:
-       name: vit
+       name: "{{ user_name }}"
        shell: /bin/zsh

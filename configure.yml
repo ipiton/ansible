@@ -1,10 +1,10 @@
-- hosts: srv-test
+- hosts: control
   tasks:
    - name: Run the equivalent of "apt-get update" as a separate step
      become: yes
      apt:
        update_cache: yes
-       cache_valid_time=3600
+       cache_valid_time: 3600
 
    - name: Update all packages to the latest version
      become: yes
@@ -14,34 +14,34 @@
    - name: Install soft
      become: yes
      apt:
-       name: 
+       name:
          - mc
-	 - wget
+         - wget
          - nano
          - curl
          - mtr
          - snmp
-	 - speedtest-cli
-	 - dnsutils
-	 - jq
-	 - zsh
-	 - git
-	 - sudo
-	 - tree
-	 - tmux
-	 - lsof
-	 - htop
-	 - iotop
-	 - iftop
-	 - iperf
-	 - ngrep
-	 - tcpdump
-	 - sipgrep
-	 - sngrep
-    
-    - name: "Copy .zshrc"
-      copy:
-        src: .zshrc
-        dest: '/home/vit/.zshrc' 
-       notify: 
-        - fix permissions
+         - speedtest-cli
+         - dnsutils
+         - jq
+         - zsh
+         - git
+         - sudo
+         - tree
+         - tmux
+         - lsof
+         - htop
+         - iotop
+         - iftop
+         - iperf
+         - ngrep
+         - tcpdump
+         - sipgrep
+         - sngrep
+
+   - name: "Copy .zshrc"
+     copy:
+      src: .zshrc
+      dest: "/home/{{ user_name }}/.zshrc" 
+     notify:
+      - fix permissions
