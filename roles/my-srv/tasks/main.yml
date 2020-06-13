@@ -42,7 +42,7 @@
    - name: Copy .zshrc
      copy:
        src: zshrc
-       dest: "/home/{{ user_name }}/.zshrc"
+       dest: "~/.zshrc"
      notify: 
        - fix permissions
     

@@ -8,3 +8,5 @@ test-ubuntu ansible_host=10.10.10.80
 ansible_python_interpreter=/usr/bin/python3
 ansible_sudo_pass=1Q2w3e4r
 
+[srv-servers]
+srv-util.air.loc user_name=root ansible_user=root
