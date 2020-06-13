@@ -1,0 +1,14 @@
+---
+
+- name: echo vars
+  debug:
+    msg: "{{ openvpn_key }}"
+
+- name: Install OpenVPN Tasks
+  include_tasks: install.yml
+  tags: install
+
+
+- name: Configure OpenVPN Tasks
+  include_tasks: config.yml
+  tags: config
