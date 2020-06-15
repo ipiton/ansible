@@ -1,0 +1,14 @@
+---
+- name: Install NFS mount utility (RedHat)
+  become: true
+  yum:
+    name: nfs-utils
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install NFS mount utility (Debian)
+  become: true
+  apt:
+    pkg: nfs-common
+    state: present
+  when: ansible_os_family == "Debian"

@@ -1,0 +1,10 @@
+---
+
+- name: Install NFS utility Tasks
+  include_tasks: install.yml
+  tags: install
+
+
+- name: Configure NFS Mount Tasks
+  include_tasks: config.yml
+  tags: config

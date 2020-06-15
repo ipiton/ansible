@@ -1,0 +1,16 @@
+---
+- name: Create mount directory
+  become: true
+  file:
+    path: "{{ nfs_folder_local }}"
+    state: directory
+    owner: root
+
+- name: Mount NFS share
+  become: true
+  mount:
+    fstype: nfs4
+    name: "{{ nfs_folder_local }}"
+    opts: "vers={{ nfs_version }},{{ nfs_mount_opts }}"
+    src: "{{ nfs_server }}"
+    state: mounted
