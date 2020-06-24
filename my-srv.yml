@@ -1,4 +1,5 @@
 - hosts: 
     - srv-servers
   roles:
-    - my-srv
+    - role: my-srv
+    - role: locales
