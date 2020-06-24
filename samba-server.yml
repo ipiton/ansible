@@ -1,0 +1,33 @@
+- hosts:
+    - srv-store.air.loc
+  vars:
+       samba_users:
+        - name: smbuser
+          password: 1Q2w3e4r
+       samba_shares:
+        - name: monitor
+          comment: 'Monitor Torrents files'
+          valid_users: smbuser
+          write_list: smbuser
+          owner: smbuser
+          group: smbuser
+          browseable: 'yes'
+          path: /torrent/monitor
+          public: 'no'
+          guest_ok: 'no'
+        - name: downloaded
+          comment: 'Downloaded Torrents files'
+          valid_users: smbuser
+          write_list: smbuser
+          owner: smbuser
+          group: smbuser
+          browseable: 'yes'
+          path: /torrent/download
+          public: 'no'
+          guest_ok: 'no'
+       nfs_server: srv-video:/media/usb-drive
+       nfs_folder_local: /media/usb-drive
+
+  roles:
+    - samba-server
+    - nfs-client

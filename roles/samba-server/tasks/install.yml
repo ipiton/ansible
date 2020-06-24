@@ -1,0 +1,53 @@
+# File: roles/samba/tasks/main.yml
+---
+
+- name: Include OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "os_{{ ansible_distribution }}.yml"
+    - "os_{{ ansible_os_family }}.yml"
+  tags: samba
+
+- name: Install Samba packages
+  package:
+    name: "{{ samba_packages }}"
+    state: present
+  tags: samba
+
+- name: Install Samba VFS extensions packages
+  package:
+    name: "{{ samba_vfs_packages }}"
+    state: present
+  when: samba_vfs_packages is defined
+  tags: samba
+
+- name: Register Samba version
+  shell: >
+    set -o nounset -o pipefail -o errexit &&
+    smbd --version | sed 's/Version //'
+  args:
+    executable: /bin/bash
+  register: samba_version
+  changed_when: false
+  tags: samba
+
+- name: "Installed Samba version:"
+  debug:
+    msg: "{{ samba_version }}"
+  tags: samba
+
+- name: Install SELinux package
+  package:
+    name: "{{ samba_selinux_packages }}"
+    state: present
+  when: ansible_selinux is defined and ansible_selinux.status == 'enabled'
+  tags: samba
+
+- name: Make sure SELinux boolean settings are correct
+  seboolean:
+    name: "{{ item }}"
+    state: true
+    persistent: true
+  with_items: "{{ samba_selinux_booleans }}"
+  when: ansible_selinux is defined and ansible_selinux.status == 'enabled'
+  tags: samba
