@@ -1,0 +1,10 @@
+---
+
+- name: Install Samba Server
+  include_tasks: install.yml
+  tags: install
+
+
+- name: Configure Samba Shares Tasks
+  include_tasks: config.yml
+  tags: config

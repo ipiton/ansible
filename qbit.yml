@@ -1,0 +1,4 @@
+---
+- hosts: srv-store.air.loc
+  roles:
+    - qbittorrent-server

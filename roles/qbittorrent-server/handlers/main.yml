@@ -1,0 +1,5 @@
+- name: Start qbittorrent
+  systemd:
+    name: qbittorrent-nox
+    state: started
+    enabled: yes

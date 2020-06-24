@@ -12,3 +12,5 @@ ansible_user=vit
 [srv-servers]
 srv-util.air.loc user_name=root ansible_user=root
 srv-radio.air.loc user_name=root ansible_user=root
+srv-store.air.loc user_name=root ansible_user=root
+srv-cams.air.loc user_name=root ansible_user=root
