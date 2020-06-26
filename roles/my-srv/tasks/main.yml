@@ -44,24 +44,28 @@
      copy:
        src: zshrc
        dest: "~/.zshrc"
-     notify: 
+     notify:
        - fix permissions
-    
+
    - name: Set shell zsh
      become: yes
      user:
        name: "{{ user_name }}"
        shell: /bin/zsh
-     
+
    - name: Add Vit user and add it to sudo
-     user: name=vit
-          state=present
-          createhome=yes
-          shell=/bin/zsh
-     become: yes    
+     user:
+       name: vit
+       state: present
+       createhome: yes
+       shell: /bin/zsh
+       password: "$6$Yw4Yn5kdoCA.C$n29Zee0Pl0DBiOX8jdJqpLEtAhmhJVNKKIru6BWLQBKZrDiE7i9Hr7c00XpEkR.g1P9zs0tjf6FkAVy.BE5xZ0"
+     become: yes
 
    - name: Set up authorized keys for the deployer user
-     authorized_key: user=vit key="{{item}}"
+     authorized_key:
+        user: vit
+        key: "{{item}}"
      with_file:
       - id_rsa.pub
 
@@ -69,5 +73,5 @@
      copy:
        src: zshrc
        dest: "/home/vit/.zshrc"
-     notify: 
+     notify:
        - fix permissions vit
