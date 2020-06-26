@@ -10,7 +10,10 @@ ansible_sudo_pass=1Q2w3e4r
 ansible_user=vit
 
 [srv-servers]
-srv-util.air.loc user_name=root ansible_user=root
+10.10.10.2 user_name=root ansible_user=root
 srv-radio.air.loc user_name=root ansible_user=root
 srv-store.air.loc user_name=root ansible_user=root
 srv-cams.air.loc user_name=root ansible_user=root
+srv-video.air.loc user_name=vit ansible_user=vit ansible_sudo_pass=1Q2w3e4r
+srv-print.air.loc user_name=vit ansible_user=vit ansible_sudo_pass=1Q2w3e4r
+srv-media.air.loc user_name=vit ansible_user=vit ansible_sudo_pass=1Q2w3e4r
