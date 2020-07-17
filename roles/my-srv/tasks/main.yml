@@ -39,6 +39,7 @@
         - sngrep
         - whois
         - neofetch
+        - sysstat
 
    - name: Copy .zshrc to {{ user_name }}
      copy:
