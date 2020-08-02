@@ -1,6 +1,6 @@
 - hosts:
     - srv-radio.air.loc
+      nfs_server: srv-store:/music
   roles:
     - role: nfs-client
-      nfs_server: srv-media:/media/music
       nfs_folder_local: /mnt/music

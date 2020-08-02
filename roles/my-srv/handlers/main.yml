@@ -1,3 +1,4 @@
+---
 - name: fix permissions
   file:
     path: '/home/{{ user_name }}/'

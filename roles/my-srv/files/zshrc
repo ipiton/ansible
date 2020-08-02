@@ -3806,6 +3806,8 @@ fi
 
 zrclocal
 
+neofetch --ascii
+
 ## genrefcard.pl settings
 
 ### doc strings for external functions from files
