@@ -5,3 +5,11 @@
     group: '{{ user_name }}'
     state: directory
     recurse: yes
+
+- name: fix permissions vit
+  file:
+    path: '/home/vit/'
+    owner: 'vit'
+    group: 'vit'
+    state: directory
+    recurse: yes

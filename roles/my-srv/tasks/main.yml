@@ -38,8 +38,9 @@
         - sipgrep
         - sngrep
         - whois
+        - neofetch
 
-   - name: Copy .zshrc
+   - name: Copy .zshrc to {{ user_name }}
      copy:
        src: zshrc
        dest: "~/.zshrc"
@@ -51,3 +52,23 @@
      user:
        name: "{{ user_name }}"
        shell: /bin/zsh
+     - group: name=sudo state=present
+
+   - name: Add Vit user and add it to sudo
+     user: name=vit
+          state=present
+          createhome=yes
+          shell=/bin/zsh
+     become: yes    
+
+   - name: Set up authorized keys for the deployer user
+     authorized_key: user=vit key="{{item}}"
+     with_file:
+      - id_rsa.pub
+
+   - name: Copy .zshrc to vit
+     copy:
+       src: zshrc
+       dest: "/home/vit/.zshrc"
+     notify: 
+       - fix permissions vit
