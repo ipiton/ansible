@@ -1,0 +1,4 @@
+- hosts:
+    - srv-cast.air.loc      
+  roles:
+    - role: ansible-docker
